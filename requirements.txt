@@ -1,0 +1,10 @@
+langchain
+langchain_community
+langchain_zhipu
+pandas
+colorama
+python-dotenv
+transformers
+tiktoken
+sentencepiece
+openpyxl

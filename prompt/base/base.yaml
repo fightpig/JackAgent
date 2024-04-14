@@ -1,0 +1,13 @@
+_type: prompt
+input_variables: 
+  - ai_name
+  - ai_role
+  - task
+  - instructions
+  - tools
+  - resources
+  - performance_evaluation
+  - history
+  - resource_dir_path
+  - response_format
+template_path: base.txt

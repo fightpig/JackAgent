@@ -1,0 +1,11 @@
+{
+  "_type": "prompt",
+  "input_variables": [
+      "task",
+      "filename",
+      "inspections",
+      "performance_evaluation",
+      "response_format"
+  ],
+  "template_path": "excel_analyse.txt"
+}

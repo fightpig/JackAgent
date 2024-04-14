@@ -1,0 +1,17 @@
+Response Format:
+{
+    "thoughts": {
+        "text": "思考",
+        "reasoning": "推理",
+        "plan": "- 简短的要点\n- 列表，表达\n- 长期计划",
+        "criticism": "建设性的自我批评",
+        "speak": "给用户的思考摘要"
+    },
+    "command": {
+        "name": "命令名称",
+        "args": {
+            "参数名": "参数值"
+        }
+    }
+}
+确保返回的 Response 可以被 Python json.loads 解析

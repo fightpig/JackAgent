@@ -1,0 +1,15 @@
+{
+  "_type": "prompt",
+  "input_variables": [
+      "ai_name",
+      "ai_role",
+      "task",
+      "instructions",
+      "tools",
+      "resource_dir_path",
+      "resources",
+      "performance_evaluation",
+      "response_format"
+  ],
+  "template_path": "base.txt"
+}
