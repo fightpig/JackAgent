@@ -1,10 +1,12 @@
 # JackAgent
-Learning agent
-
+AI智能体，个人学习项目
 ## 安装环境
 建议使用python 3.10及上。 
 `conda create -n agent python=3.10 -y`
-
+## 指定大模型的API key
+复制根目录的`.env.example`，改成`.env`，填写对应大模型的`API key`
+## 启动
+`python main.py`
 ## 运行报错
 >   File "D:\ProgramData\miniconda3\envs\agent\lib\site-packages\langchain_core\prompts\loading.py", line 30, in load_prompt_from_config  
     return prompt_loader(config)  

@@ -8,3 +8,5 @@ transformers
 tiktoken
 sentencepiece
 openpyxl
+pypdf
+faiss-cpu
