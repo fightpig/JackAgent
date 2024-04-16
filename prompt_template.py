@@ -328,7 +328,7 @@ A:"""
         partial_format = {
             'tools': (format_prompts_with_number, {'items': tools, 'item_type': 'command', 'language': 'zh'})
         }
-        parser = RecursivePromptTemplateConfigParser('prompt/test/base.json')
+        parser = RecursivePromptTemplateConfigParser('prompt/test/code-interpreter.json')
         parameters = {
             'ai_name': '小聪明',
             'ai_role': '智能助手',
@@ -341,7 +341,7 @@ A:"""
             'example_2_q': 'example_2_q',
             'example_2_a': 'example_2_a',
         }
-        # parser = RecursivePromptTemplateConfigParser('learn/prompt_template/base.json')
+        # parser = RecursivePromptTemplateConfigParser('learn/prompt_template/code-interpreter.json')
         # parameters = dict(
         #     person="Elon Musk",
         #     example_q="What's your favorite car?",

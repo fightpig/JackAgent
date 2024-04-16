@@ -24,8 +24,8 @@ def get_zhipu_embeddings(**kwargs) -> ZhipuAIEmbeddings:
     return ZhipuAIEmbeddings(api_key=ZHIPU_API_KEY, **kwargs)
 
 
-def get_local_chatglm3_6b_embeddings(model_path=r'D:\workspaces\python\chatglm3-6b-tokenizer',
-                                     **kwargs) -> AutoTokenizer:
+def get_local_chatglm3_6b_tokenizer(model_path=r'D:\workspaces\python\chatglm3-6b-tokenizer',
+                                    **kwargs) -> AutoTokenizer:
     """
     从https://modelscope.cn/models/ZhipuAI/chatglm3-6b/files中下载以下3个文件，放到指定文件夹中，再加载
     1. tokenization_chatglm.py
@@ -45,7 +45,7 @@ def get_zhipu_chat_llm(model_name="glm-4",
         max_tokens=max_tokens,
         **kwargs
     )
-    tokenizer = tokenizer if tokenizer else get_local_chatglm3_6b_embeddings()
+    tokenizer = tokenizer if tokenizer else get_local_chatglm3_6b_tokenizer()
     llm.__class__.get_num_tokens = lambda self, x: len(tokenizer.encode(x))
     return llm
 

@@ -214,7 +214,7 @@ class BaseAgent(ABC):
                 SystemMessage(content=f"当前日期时间是 {time.strftime('%Y-%m-%d %H:%M:%S')}")
             )
             self.short_chat_memory_obj.add_message(
-                HumanMessage(content='确定要使用的下一个命令/操作，并使用上面指定的格式进行响应。')
+                HumanMessage(content='确定要使用的下一个命令/操作，并使用上面指定的格式进行回复。')
             )
             self.short_chat_memory_obj.add_message(AIMessage(content=ai_reply.content))
         return ai_reply
@@ -312,8 +312,8 @@ class AutoAgent(BaseAgent):
         else:
             thoughts = response.thoughts
             action = response.command
-            self.color_print.print_thought(thoughts, idx=loop_cn)
-            self.color_print.print_action(action, idx=loop_cn)
+            # self.color_print.print_thought(thoughts, idx=loop_cn)
+            # self.color_print.print_action(action, idx=loop_cn)
 
             tools = {t.name: t for t in self.tools}
             if action.name == FINISH_NAME:

@@ -14,4 +14,4 @@ Response Format:
         }
     }
 }
-确保返回的 Response 可以被 Python json.loads 解析
+确保返回的 Response 是 JSON，且可被 Python 的 json.loads 解析

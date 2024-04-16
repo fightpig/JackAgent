@@ -1,0 +1,12 @@
+{
+  "_type": "prompt",
+  "input_variables": [
+    "task",
+    "instructions",
+    "tools",
+    "resource_dir_path",
+    "response_format",
+    "short_chat_memory"
+  ],
+  "template_path": "base.txt"
+}

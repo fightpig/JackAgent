@@ -59,7 +59,7 @@ def get_column_names(filename: str) -> str:
 @tool('InspectExcel')
 def get_excel_meta_description(filename: str, n: int = 3) -> str:
     """
-    获取Excel的结构和内容，返回它所有的sheet名、第一个sheet的列名，以及第一个sheet的前n行数据，n默认为3
+    描述指定excel的内容，返回它所有的sheet名、第一个sheet的列名，以及第一个sheet的列名和前n行数据，n默认为3
     """
 
     sheet_names = get_sheet_names(filename)
@@ -76,7 +76,7 @@ def get_excel_meta_description(filename: str, n: int = 3) -> str:
         f"\n\n"
         f"2. 第一个Sheet的列名：{column_names}"
         f"\n\n"
-        f"3. 第一个Sheet的前{n}行数据：\n{lines}"
+        f"3. 第一个Sheet的列名和前{n}行数据：\n{lines}"
     )
     return description
 
@@ -199,7 +199,11 @@ class AutoExcelAnalyser(BaseAgent):
         return super().run(task=task, filename=filename)
 
     def reason(self, task, filename, loop_cn, add_message=False, use_chat_num=2) -> BaseMessage:
-        inspections = get_excel_meta_description(filename, 3)
+        if isinstance(get_excel_meta_description, StructuredTool):
+            inspections = get_excel_meta_description.run(tool_input=dict(filename=filename, n=3))
+        else:
+            inspections = get_excel_meta_description(filename, 3)
+
         parameters = dict(
             filename=filename,
             inspections=inspections,
@@ -237,7 +241,7 @@ class AutoExcelAnalyser(BaseAgent):
         return StructuredTool.from_function(
             func=self.run,
             name="AnalyseExcel",
-            description="通过Python代码分析excel中的内容，获取你想要的数据。"
+            description="根据需求，生成 Python代码 来分析指定excel中的数据，返回分析结果。"
             # "输入中必须包含文件的完整路径、具体分析方式、分析依据和阈值常量等。"
             # "如果输入信息不完整，你可以拒绝回答",
         )
@@ -308,12 +312,13 @@ def test_excel_analyser():
     llm = get_zhipu_chat_llm()
     cp = ColorPrint(print_prefix='Excel Analyse')
     excel_analyser = AutoExcelAnalyser(
-        base_prompt_config_path='prompt/tools/excel_analyse.json', llm=llm, color_print=cp,
-
+        base_prompt_config_path='prompt/tools/excel_analyse.json',
+        llm=llm,
+        color_print=cp,
     )
     result, tokens, cost = excel_analyser.run(
-        task="8月销售额",
-        filename="data/2023年8月-9月销售记录.xlsx"
+        task="8月所有供应商的销售额，并汇总成总销售额",
+        filename="data/data_analyse/2023年8月-9月销售记录.xlsx"
     )
     print(result, cost)  # 2605636
 
@@ -348,5 +353,5 @@ def test_document_retriever():
 
 
 if __name__ == '__main__':
-    # test_excel_analyser()
-    test_document_retriever()
+    test_excel_analyser()
+    # test_document_retriever()
